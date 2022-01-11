@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class DollCrane {
+public class Third_DollCrane {
   public int solution(int[][] board, int[] moves) {
     int answer = 0;
 
