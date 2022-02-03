@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 class Solution {
     public Object[] solution(String[] id_list, String[] report, int k) {
-        int[] answer = {};
         // report에 있는 신고 한 사람, 신고 당한 사람 나눠
         // id와 횟수용 해시테이블
         // k보다 크면 신고한 id를 신고당한 id와 해시테이블에 저장
