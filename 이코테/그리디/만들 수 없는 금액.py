@@ -27,7 +27,7 @@
 # print(result)
 
 # 2
-# 찾아보니 비슷하게 조합(combination)을 사용한 코드가 있더라: but 시간 부담 똑같이 high
+# 찾아보니 비슷하게 조합(combination)을 사용한 코드가 있더라: but 시간 부담 똑같이 high --파이썬에만있음
 # from itertools import combinations
 # n = int(input())
 # coins = list(map(int, input().split()))
