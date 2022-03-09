@@ -79,6 +79,7 @@ for data in combinations(blanks,3):
         if not find_students_after_placing_object():
             nobody = True
             break
+    #못찾으면 계속해서
     for tuple in data:
         # 설치한 장애물 다시 없애기
         graph[tuple[0]][tuple[1]] = "X"
