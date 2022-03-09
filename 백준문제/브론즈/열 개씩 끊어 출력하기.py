@@ -1,7 +1,7 @@
 word = input()
 num_of_ten = len(word)//10
 remainder = len(word)%10
-print(remainder)
+#print(remainder)
 start = 0
 end = 10
 
