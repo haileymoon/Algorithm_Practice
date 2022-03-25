@@ -21,6 +21,6 @@ for _ in range(n):
                 target_idx = len(queue) - 1
         else:
             count += 1
-            if target_idx == -1 and num_now == max_num:
+            if target_idx == -1:
                 print(count)
                 break
