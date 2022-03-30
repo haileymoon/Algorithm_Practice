@@ -16,7 +16,7 @@ def bfs(queue, graph):
         for i in range(len(dx)):
             nx = x + dx[i]
             ny = y + dy[i]
-            if 0 > nx or nx > m-1 or 0>ny or ny > n-1:
+            if 0 > nx or nx > m-1 or 0 > ny or ny > n-1:
                 continue
             else:
                 if graph[ny][nx] == 0:
@@ -25,6 +25,7 @@ def bfs(queue, graph):
                     queue.append((nx, ny))
                     graph[ny][nx] = 0
     return count
+
 
 for _ in range(case):
     m, n, k = map(int, sys.stdin.readline().split())
