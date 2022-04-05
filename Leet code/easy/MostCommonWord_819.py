@@ -16,7 +16,7 @@ def mostCommonWord(paragraph: str, banned) -> str:
     paragraph = list(paragraph.split())
     # count by frequency
     counter = list(Counter(paragraph).most_common())
-    print(counter)
+    # print(counter)
     # remove banned
     for word in counter:
         if word[0] in banned:
