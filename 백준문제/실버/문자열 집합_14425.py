@@ -5,5 +5,5 @@ count = 0
 for _ in range(m):
     check = sys.stdin.readline().rstrip()
     if check in s:
-        count +=1
+        count += 1
 print(count)
