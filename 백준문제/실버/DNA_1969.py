@@ -15,11 +15,14 @@ for i in range(m):
     # sort까지 해줌
     max_count = counter.most_common()
     freq = max_count[0][1]
+
+    # 동일한 개수의 답이 나올 경우 사전순으로
     keys = []
     for num in max_count:
         if num[1] == freq:
             keys.append(num[0])
     keys.sort()
+
     answer.append(keys[0])
     counter.pop(keys[0])
     for item in counter.values():
