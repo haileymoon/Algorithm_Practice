@@ -1,0 +1,14 @@
+n, k = map(int, input().split())
+dividend = 1
+divisor = 1
+
+if n-k == 0:
+    print(1)
+else:
+    for i in range(n, 1, -1):
+        dividend *= i
+    for j in range(1, k+1):
+        divisor *= j
+    for d in range(1, n-k+1):
+        divisor *= d
+    print(dividend//divisor)
