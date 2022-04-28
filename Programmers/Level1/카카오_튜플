@@ -1,0 +1,20 @@
+import heapq
+
+def solution(s):
+    answer = []
+    heap = []
+    tuple_value = set()
+    set_list = s[2:-2].split("},{")
+    
+    for x in set_list:
+        #group은 수의 집합
+        group = list(map(int, x.split(",")))
+        heapq.heappush(heap, (len(group), group))
+    #첫번째 원소 미리 담아놓기
+    answer.append(int(heapq.heappop(heap)[1][0]))
+    while heap:
+        set_answer = set(answer)
+        values = set(heapq.heappop(heap)[1]) - set_answer
+        answer.append(int(list(values)[0]))
+    return answer
+print(solution("{{4,2,3},{3},{2,3,4,1},{2,3}}"))
