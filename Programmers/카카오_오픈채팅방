@@ -1,0 +1,17 @@
+def solution(record):
+    answer = []
+    name = []
+    ans = []
+    name_dict = {}
+    for cmd in record:
+        key_words = cmd.split(" ")
+        if key_words[0] == "Enter":
+            name_dict[key_words[1]] = key_words[2] 
+            ans.append((key_words[1], "님이 들어왔습니다."))
+        elif key_words[0] == "Leave":
+            ans.append((key_words[1], "님이 나갔습니다."))
+        else: # change
+            name_dict[key_words[1]] = key_words[2] 
+    for sentence in ans:
+        answer.append(name_dict[sentence[0]]+sentence[1])
+    return answer
