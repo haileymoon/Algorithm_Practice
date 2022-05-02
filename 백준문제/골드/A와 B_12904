@@ -1,0 +1,15 @@
+import sys
+substring = sys.stdin.readline().rstrip()
+target = sys.stdin.readline().rstrip()
+process = ""
+
+while len(substring) < len(target):
+    if target[-1] == "A":
+        target = target[:-1]
+    else:
+        target = target[:-1]
+        target = target[::-1]
+if target == substring:
+    print(1)
+else:
+    print(0)
