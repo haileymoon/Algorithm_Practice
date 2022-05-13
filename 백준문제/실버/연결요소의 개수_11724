@@ -1,0 +1,33 @@
+from collections import deque
+import sys
+
+vertex_count, edge_count = map(int, sys.stdin.readline().split())
+#vertex키를 인덱스로 할거기 때문에 0은 무시
+graph = [[] for _ in range(vertex_count+1)]
+visited = [False for _ in range(vertex_count+1)]
+connected_component = 0
+
+for _ in range(edge_count):
+    u, v = map(int, sys.stdin.readline().split())
+    graph[u].append(v)
+    graph[v].append(u)
+
+def bfs(start, visited):
+    queue = deque([start])
+    while queue:
+        vertex = queue.popleft()
+        visited[vertex] = True
+        for vertices in graph[vertex]:
+            if not visited[vertices]:
+                visited[vertices] = True
+                queue.append(vertices)
+
+for i in range(1, vertex_count+1):
+    # if not graph[i]:
+    #     continue
+    # edge가 없는 것도 있음. 그런것들은 +1로 카운팅해줘야함
+    # 주의할점은 우리가 0은 무시 용도로 만들었으니, 그걸 빼주기 위해 for문을 무조건 1에서 시작
+    if not visited[i]:
+        bfs(i, visited)
+        connected_component += 1
+print(connected_component)
