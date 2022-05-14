@@ -1,0 +1,27 @@
+import sys
+input = sys.stdin.readline
+k, target = map(int, input().split())
+array = []
+for _ in range(k):
+    array.append(int(input()))
+array.sort()
+
+# 나중에 zerodivision error을 피하기 위해 문제조건에 명시되어있는 1 이상이라는 조건 start에 반영
+start = 1
+end = array[-1]
+minimum_record = 0
+
+while start <= end:
+    result = 0
+    mid = (start+end)//2
+    for i in range(len(array)):
+        result += array[i]//mid    
+    if result < target:
+        end = mid-1
+    elif result >= target:
+        minimum_record = mid
+        start = mid +1
+if minimum_record == 0:
+    print(-1)
+else:
+    print(minimum_record)
