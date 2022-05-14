@@ -1,0 +1,35 @@
+from collections import deque
+n, m = map(int, input().split())
+graph = []
+visited = [[False]*m for _ in range(n)]
+for _ in range(n):
+    graph.append(list(map(int, input().split())))
+
+queue = deque()
+for i in range(n):
+    for j in range(m):
+        if graph[i][j] == 1:
+            queue.append((i,j))
+
+dx = [-1,-1,-1,0,0,1,1,1]
+dy = [-1,0,1,-1,1,-1,0,1]
+
+def bfs(queue, visited):
+    max_num = 0
+    while queue:
+        x, y = queue.popleft()
+        visited[x][y] = True
+        for i in range(8):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if nx < 0 or ny < 0 or nx >= n or ny >= m:
+                continue
+            if graph[nx][ny] == 0 and not visited[nx][ny]:
+                graph[nx][ny] = graph[x][y] + 1
+                max_num = max(max_num, graph[x][y] + 1)
+                visited[x][y] = True
+                queue.append((nx, ny))
+    # 상어가 있는 곳부터 1이 시작하는데, 내가 구하는 안전거리는 상어다음부터 1
+    print(max_num-1)
+
+bfs(queue, visited)
