@@ -1,3 +1,6 @@
+#구현으로 푼 방법
+
+#bfs로 푼 방법
 from collections import deque
 a, b = map(int, input().split())
 # key: 숫자, value: 연산횟수
