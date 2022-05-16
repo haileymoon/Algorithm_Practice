@@ -1,0 +1,32 @@
+from collections import deque
+s = int(input())
+# 배경화면의 이모티콘 수, 클립보드의 이모티콘 수
+start = (1,0)
+# 2차원 리스트로도 가능 visited[front][clipboard]
+visited = dict()
+# 튜플을 키로 놓고 값은 방문횟수
+visited[(1,0)] = 0
+def bfs(start, target):
+    queue = deque([])
+    queue.append(start)
+    while queue:
+        front, clipboard = queue.popleft()
+        if front == target:
+            print(visited[(front, clipboard)])
+            break
+        #1번 연산
+        # 생각을 해봤는데 이 좌표가 다른 방법으로도 무조건 나올 수 있는데
+        # 한번 찾았다고 제외해도 되나? 된다. 최단 경로를 찾고 있는거고 이 뒤에 나오는건
+        # 얘보다 최단일 수 없기 때문
+        if (front, front) not in visited.keys():
+            visited[(front, front)] = visited[(front, clipboard)] + 1
+            queue.append((front, front))
+        #2번 연산
+        if ((front+clipboard), clipboard) not in visited.keys():
+            visited[((front+clipboard), clipboard)] = visited[(front, clipboard)] + 1
+            queue.append(((front+clipboard), clipboard))
+        #3번 연산
+        if (front-1, clipboard) not in visited.keys():
+            visited[(front-1, clipboard)] = visited[(front, clipboard)] + 1
+            queue.append((front-1, clipboard))
+bfs(start, s)
