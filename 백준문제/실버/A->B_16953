@@ -1,5 +1,24 @@
 #구현으로 푼 방법
-
+start, target = input().split()
+count = 0
+while int(target) > int(start):
+    if target[-1] == "1":
+        target = target[:-1]
+        count +=1
+    elif int(target)%2 == 0:
+        target = str(int(target) // 2)
+        count +=1
+    else:
+        count = -1
+        break
+ 
+if count != -1 and start == target:
+    print(count+1)
+elif count != -1:
+    print(-1)
+else:
+    print(-1)
+    
 #bfs로 푼 방법
 from collections import deque
 a, b = map(int, input().split())
