@@ -1,0 +1,41 @@
+from collections import deque
+n, target = map(int, input().split())
+visited = [0 for _ in range(100000+1)]
+def bfs(start):
+    queue = deque([start])
+    while queue:
+        location = queue.popleft()
+        if location == target:
+            print(visited[location])
+            break
+        move = [location+1, location-1, location * 2]
+        for x in move:
+            if 0<= x <= 100000 and not visited[x]:
+                visited[x] = visited[location] + 1
+                queue.append(x)
+bfs(n)
+
+# from collections import deque
+# n, target = map(int, input().split())
+# visited = [0 for _ in range(100000+1)]
+# def bfs(start):
+#     queue = deque([start])
+#     while queue:
+#         location = queue.popleft()
+#         if location == target:
+#             print(visited[location])
+#             break
+#         # +1 만큼 걸었을 때
+#         if 0<= location + 1 <= 100000:
+#             if visited[location + 1] == 0:
+#                 visited[location + 1] = visited[location] + 1
+#                 queue.append(location + 1)
+#         if 0<= location - 1 <= 100000:
+#             if visited[location - 1] == 0:
+#                 visited[location - 1] = visited[location] + 1
+#                 queue.append(location - 1)
+#         if 0<= location * 2 <= 100000:
+#             if visited[location * 2] == 0:
+#                 visited[location * 2] = visited[location] + 1
+#                 queue.append(location * 2)
+# bfs(n)
