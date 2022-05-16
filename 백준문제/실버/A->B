@@ -1,0 +1,19 @@
+from collections import deque
+a, b = map(int, input().split())
+# key: 숫자, value: 연산횟수
+visited = dict()
+visited[a] = 1
+def bfs(start):
+    queue = deque([start])
+    while queue:
+        num = queue.popleft()
+        if num == b:
+            return visited[num]
+        move = [num*2, int(str(num)+"1")]
+        for new_num in move:
+            if new_num not in visited.keys() and new_num <= 10**9:
+                visited[new_num] = visited[num] + 1
+                queue.append(new_num)
+    return -1
+
+print(bfs(a))
