@@ -1,0 +1,40 @@
+from collections import deque
+
+t = int(input())
+answer = []
+for _ in range(t):
+    count = 0
+    m, n, k = map(int, input().split())
+    graph = [[0] * m for _ in range(n)]
+    #key (i,j):value 1
+    visited = dict()
+    for _ in range(k):
+        x_m, y_n = map(int, input().split())
+        graph[y_n][x_m] = 1
+
+    def bfs(x,y):
+        dx = [-1,1,0,0]
+        dy = [0,0,-1,1]
+        queue = deque()
+        queue.append((x,y))
+        visited[(x,y)] = 1
+        while queue:
+            x, y = queue.popleft()
+            for i in range(4):
+                nx, ny = x + dx[i], y + dy[i]
+                if nx < 0 or ny < 0 or nx >= n or ny >= m:
+                    continue
+                if graph[nx][ny] == 1 and (nx,ny) not in visited.keys():
+                    visited[(nx, ny)] = 1
+                    queue.append((nx,ny))
+                
+    for i in range(n):
+        for j in range(m):
+            if graph[i][j] == 1 and (i,j) not in visited.keys():
+                visited[(i,j)] = 1
+                bfs(i,j)
+                count += 1
+    answer.append(count)
+for ans in answer:
+    print(ans)
+        
