@@ -1,26 +1,20 @@
 from itertools import combinations
-# 에라토스테네스의 체 (소수거르기)
-def prime_list(n):
-    # 처음엔 모든 수가 소수인것으로 초기화
-    prime_num = [True for _ in range(n+1)]
-    # n의 최대 약수가 sqrt(n)이하이므로 i = sqrt(n)까지 검사 
-    # int로 만들어줘서 round up
-    n = int(n ** 0.5)
+def make_prime_list(n):
+    prime = []
+    isPrime = [True for _ in range(n+1)]
+    # n제곱근까지만 확인
     for i in range(2, n+1):
-        # 처음만난 숫자이거나, 곱하기 처리해줬을 때 살아남은 아이들만 소수로 판단
-        if prime_num[i] == True:
-            # i 이후 i의 배수들을 False로 판정
-            # start = i의 다음 배수, 즉 i+i (2 였으면 2+2해서 다음배수인 4부터 시작)
-            # step은 i 만큼 건너뛰면 i의 배수들 다 클리어 할 수 있음
+        if isPrime[i] == True:
+            prime.append(i)
             for j in range(i+i, n+1, i):
-                prime_num[j] = False
-    # 2부터 시작하고 True인 애들만 소수이니까 그 소수만이 담긴 리스트 리턴
-    return [i for i in range(2, n+1) if prime_num[i] == True]
-
+                isPrime[j] = False
+    return prime
 def solution(nums):
     answer = 0
-    prime = set(prime_list(10000000))
+    prime_list = set(make_prime_list(3000))
     for item in combinations(nums, 3):
-        if sum(item) in prime:
+        if sum(item) in prime_list:
             answer += 1
+
+
     return answer
