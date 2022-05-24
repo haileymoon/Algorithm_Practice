@@ -1,0 +1,11 @@
+def solution(sizes):
+    # 큰쪽을 한쪽으로 밀어버려야 최소값이 나옴. 최대한 한 쪽은 적게 한쪽은 크게 해야함 (큰건 어차피 곱해지니까 피할 수 없지만 작은건 작을 수록 좋으니까!)
+    w_max, h_max = 1, 1
+    for size in sizes:
+        shorter = min(size[0], size[1])
+        longer = max(size[0], size[1])
+        if shorter > w_max:
+            w_max = shorter
+        if longer > h_max:
+            h_max = longer
+    return w_max*h_max
