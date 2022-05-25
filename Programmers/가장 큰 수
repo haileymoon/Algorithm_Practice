@@ -1,0 +1,9 @@
+def solution(numbers):
+    answer = ""
+    # 방법은 두가지다. 
+    # 1. 내림차순으로 할때 지금과 다음 str을 더해보고 다음과 지금 str을 비교해보고 배치
+    # 2. str을 같은 길이로 만들어줘서 비교. 왜냐면 문자열은 순서대로 비교해줌 -> 3030 3333 하면 3은 같으니까 패스, 그다음에 0이랑 3비교 
+    str_array = list(map(str, numbers))
+    str_array.sort(key = lambda x: x*3, reverse = True) # 최대 길이가 1000이니까
+    #"".join(str_array) 를 리턴했을 때 [0,0,0,0]이면 0000가 리턴되어서 틀림
+    return str(int("".join(str_array)))
