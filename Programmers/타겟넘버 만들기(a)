@@ -1,0 +1,18 @@
+from collections import deque
+def bfs(numbers, length):
+    queue = deque()
+    answers = []
+    queue.append((numbers[0], 0))
+    queue.append((-numbers[0], 0))
+    while queue:
+        num, idx = queue.popleft()
+        if idx+1 < length:
+            queue.append((num + numbers[idx+1], idx+1))
+            queue.append((num - numbers[idx+1], idx+1))
+        elif num == target:
+            answers.append(num)
+    return len(answers)
+numbers = [1, 1, 1, 1, 1]
+target = 3
+answer = 0
+print(bfs(numbers, len(numbers)))
