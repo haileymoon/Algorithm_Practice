@@ -1,0 +1,45 @@
+switch_count = int(input())
+switch_list = list(map(int, input().split()))
+student_count = int(input())
+def switch(state):
+    if state == 0:
+        state = 1
+    else:
+        state = 0
+    return state
+
+for _ in range(student_count):
+    gender, num = map(int, input().split())
+    if gender == 1:
+        for i in range(num-1, switch_count, num):
+            switch_list[i] = switch(switch_list[i])
+    else:
+        left_point = num - 2
+        right_point = num
+        if left_point < 0 or right_point >= switch_count:
+            pass
+        else:
+            while switch_list[left_point] == switch_list[right_point]:
+                switch_list[left_point] = switch(switch_list[left_point])
+                switch_list[right_point] = switch(switch_list[right_point])
+                left_point -= 1
+                right_point += 1
+                if left_point < 0 or right_point >= switch_count:
+                    break
+        switch_list[num-1] = switch(switch_list[num-1])
+count = 0
+for each_switch in switch_list:
+    count += 1
+    if count == 20:
+        count = 0
+        print(each_switch, end="")
+        print()
+    else:
+        print(each_switch, end=" ")
+#for i in range(0,N,20):
+#    print(*switch)
+
+# for i in range(1, switch_len + 1):
+#     print(int(switch[i - 1]), end=' ')
+#     if i % 20 == 0:
+#         print()
